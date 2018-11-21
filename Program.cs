@@ -24,11 +24,18 @@ namespace objpatrishbot
                 Console.Write("api token could not be loaded from disk. Please enter api token: ");
                 apitoken = Console.ReadLine();
             }
-
-            botClient = new TelegramBotClient(apitoken);
-            var me = botClient.GetMeAsync().Result;
-            Console.WriteLine($"Jag känner en bot.\n\tid: {me.Id} \n\tname: {me.FirstName}\n\tuser: {me.Username}.");
-
+            try
+            {
+                botClient = new TelegramBotClient(apitoken);
+                var me = botClient.GetMeAsync().Result;
+                Console.WriteLine($"Jag känner en bot.\n\tid: {me.Id} \n\tname: {me.FirstName}\n\tuser: {me.Username}.");
+            }
+            catch (System.Exception e)
+            {
+                Console.WriteLine($"Exception occured while initializing bot client\n\t {e.Message}");
+                return;
+            }
+            
             botClient.OnMessage += Bot_OnMessage;
             botClient.StartReceiving();
             
