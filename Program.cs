@@ -11,7 +11,7 @@ namespace objpatrishbot
 
         public async Task MainAsync()
         {
-            var client = new DiscordSocetClient();
+            var client = new DiscordSocketClient();
 
             client.Log += Log;
 
