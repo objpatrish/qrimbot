@@ -48,9 +48,9 @@ namespace objpatrishbot
 
         private async Task MessageReceived(SocketMessage message)
         {
-            if (message.Content == "!ping")
+            if (message.Content.Contains("qrim"))
             {
-                await message.Channel.SendMessageAsync("Pong!");
+                await message.Channel.SendMessageAsync("Epic!");
             }
         }
 
