@@ -10,14 +10,14 @@ namespace objpatrishbot.ImageHandler.Factory
     /// and instance of an Image Handler for the appropriate chat service. 
     /// </summary>
     /// <typeparam name="TAttachment">The type of attachment the service expects to return.</typeparam>
-    class ImageHandlerFactory <TAttachment>
+    static class ImageHandlerFactory <TAttachment>
     {
         /// <summary>
         /// Creates an image handler.
         /// </summary>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        public IImageHandler<TAttachment> Create(string connectionString)
+        public static IImageHandler<TAttachment> Create(string connectionString)
         {
             throw new NotImplementedException();
         }
