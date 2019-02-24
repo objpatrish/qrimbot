@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Discord.WebSocket;
-using objpatrishbot.MessageHandler.Client;
+﻿using objpatrishbot.MessageHandler.Implementation;
 using objpatrishbot.MessageHandler.Interface;
 
 namespace objpatrishbot.MessageHandler.Factory

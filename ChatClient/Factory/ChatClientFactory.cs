@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using objpatrishbot.ChatClient.Client;
+using objpatrishbot.ChatClient.Implementation;
 using objpatrishbot.ChatClient.Interface;
 
 namespace objpatrishbot.ChatClient.Factory
