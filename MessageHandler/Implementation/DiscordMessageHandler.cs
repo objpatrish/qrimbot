@@ -1,6 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Discord.WebSocket;
+using objpatrishbot.ImageHandler.Factory;
+using objpatrishbot.ImageHandler.Implementations;
 using objpatrishbot.MessageHandler.Interface;
+
 
 namespace objpatrishbot.MessageHandler.Implementation
 {
@@ -10,7 +13,8 @@ namespace objpatrishbot.MessageHandler.Implementation
         {
             if (message.Content.ToUpper().Contains("QRIM"))
             {
-                await message.Channel.SendMessageAsync("Epic!");
+                var imageProvider = ImageHandlerFactory.Create("");
+                await imageProvider.SendImage("qrim", message.Channel.Name, message.Content.ToUpper().Contains("SAD"));
             }
         }
     }

@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ImageHandler\Implementations\" />
+    <Folder Include="ImageProvider\" />
   </ItemGroup>
 
 </Project>

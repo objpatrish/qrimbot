@@ -12,6 +12,7 @@ namespace objpatrishbot.ChatClient.Implementation
     {
         string tokenpath = ".apitoken";
         string token = "";
+        public static readonly DiscordSocketClient client = new DiscordSocketClient();
 
         public async Task StartUp()
         {
@@ -29,8 +30,6 @@ namespace objpatrishbot.ChatClient.Implementation
             try
             {
                 var messageHandler = MessageHandlerFactory<SocketMessage>.Create();
-
-                var client = new DiscordSocketClient();
 
                 client.Log += Log;
                 client.MessageReceived += messageHandler.MessageReceived;
