@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/objpatrishbot.csproj"
+                "${workspaceFolder}/src/objpatrishbot.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
