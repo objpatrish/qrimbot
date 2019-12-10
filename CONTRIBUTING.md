@@ -48,9 +48,9 @@ A quick setup guide is as follows:
 ### Setup a fork for you to work in
 - Use Github's UI to fork this repository
 - Clone your fork locally: ```$ git clone <url_to_your_fork>```
-- Add a remote path to the official repository: ```$ git remote add upstream <url_to_official>```. Use ```git fetch upstream``` to sync the two as necessary.
-- Make sure you are in the develop branch(default) ```git checkout develop```. Now, create your feature branch ```git checkout -b <feature_name>```
-- When you are done with your commits, use ```git push origin <feature_name>```
+- Add a remote path to the official repository: ```$ git remote add upstream <url_to_official>```. Use ```$ git fetch upstream``` to sync the two as necessary.
+- Make sure you are in the develop branch(default) ```$ git checkout develop```. Now, create your feature branch ```$ git checkout -b <feature_name>```
+- When you are done with your commits, use ```$ git push origin <feature_name>```
 
 Now, you are ready to open a pull request.
 
