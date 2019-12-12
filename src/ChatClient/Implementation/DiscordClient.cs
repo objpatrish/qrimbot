@@ -10,21 +10,30 @@ namespace objpatrishbot.ChatClient.Implementation
 {
     class DiscordClient : IChatClient
     {
-        string tokenpath = ".apitoken";
-        string token = "";
+        /// <summary>
+        /// if the DISCORD_API_TOKEN environment variable is not set the program will look at this path for a file containing the token
+        /// </summary>
+        string tokenPath = ".apitoken";
+        string apiToken = "";
         public static readonly DiscordSocketClient client = new DiscordSocketClient();
 
         public async Task StartUp()
         {
-            if (File.Exists(tokenpath))
+            string apitokenEnv = Environment.GetEnvironmentVariable("DISCORD_API_TOKEN");
+            if (apitokenEnv != null)
             {
-                token = File.ReadAllText(tokenpath);
-                Console.WriteLine($"api token loaded from disk: {token}");
+                Console.WriteLine("using discord api token from env");
+                apiToken = apitokenEnv;
+            }
+            else if (File.Exists(tokenPath))
+            {
+                apiToken = File.ReadAllText(tokenPath);
+                Console.WriteLine($"discord api token loaded from disk.");
             }
             else
             {
                 Console.Write("api token could not be loaded from disk. Please enter api token: ");
-                token = Console.ReadLine();
+                apiToken = Console.ReadLine();
             }
 
             try
@@ -34,7 +43,7 @@ namespace objpatrishbot.ChatClient.Implementation
                 client.Log += Log;
                 client.MessageReceived += messageHandler.MessageReceived;
 
-                await client.LoginAsync(TokenType.Bot, token);
+                await client.LoginAsync(TokenType.Bot, apiToken);
                 await client.StartAsync();
                 // Block this task until the program is closed.
                 await Task.Delay(-1);
