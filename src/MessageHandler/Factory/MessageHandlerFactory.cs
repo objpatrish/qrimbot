@@ -1,4 +1,4 @@
-﻿using objpatrishbot.MessageHandler.Implementation;
+using objpatrishbot.MessageHandler.Implementation;
 using objpatrishbot.MessageHandler.Interface;
 
 namespace objpatrishbot.MessageHandler.Factory

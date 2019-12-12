@@ -1,0 +1,44 @@
+BASEDIR=$(readlink -f "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/..")
+
+build() {
+    docker build -t objpatrishbot:dev -f ${BASEDIR}/Dockerfile.dev $@ .
+}
+
+release() {
+    docker build -t objpatrishbot:latest -f ${SCRIPTDIR}/Dockerfile $@ .
+}
+
+run() {
+    docker run --rm objpatrishbot:dev $@
+}
+
+dev() {
+    docker run --rm -v "${BASEDIR}/src:/app" objpatrishbot:dev $@
+}
+
+if [[ "$1" == "help" || "$1" == "-h" || "$1" == "--help" ]]; then
+    echo "usage: bot [help|-h|--help] SUBCOMMAND"
+    echo ""
+    echo "optional arguments:"
+    echo "  help | -h | --help"
+    echo "    print this message and exit"
+    echo ""
+    echo "subcommands:"
+    echo "  build [OPTIONS]"
+    echo "     builds the container, equivalent to running \"docker build -t objpatrishbot:dev\", also hands over additional args to the docker command."
+    echo ""
+    echo "  release [OPTIONS]"
+    echo "     like \"build\", but tags the container as \"latest\", uses a dockerfile that omits the dotnet core sdk, compiles the binary and uses a respective entrypoint. fyi: tag can be specified again if you want to tag it as \"release\" or something, i'm not your dad."
+    echo ""
+    echo "  dev [COMMAND]"
+    echo "     like \"run\", but mounts the source code locally. do this while developing"
+    echo ""
+    echo "  run [COMMAND]"
+    echo "     runs the container, equivalent to running \"docker run --rm objpatrishbot:latest "
+    exit 0
+fi
+
+command=${1}
+shift
+
+${command} $@

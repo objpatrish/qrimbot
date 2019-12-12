@@ -217,8 +217,8 @@ TestResult.xml
 
 # Others
 **/ClientBin/
-**/~$*
-**/*~
+# **/~$*
+# **/*~
 **/*.dbmdl
 **/*.dbproj.schemaview
 **/*.jfm

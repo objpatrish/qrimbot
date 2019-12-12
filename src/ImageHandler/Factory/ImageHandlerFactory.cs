@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using objpatrishbot.ImageHandler.Implementations;
 using objpatrishbot.ImageHandler.Interface;
 

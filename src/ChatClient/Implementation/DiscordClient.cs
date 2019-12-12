@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Discord;
@@ -10,30 +10,22 @@ namespace objpatrishbot.ChatClient.Implementation
 {
     class DiscordClient : IChatClient
     {
-        /// <summary>
-        /// if the DISCORD_API_TOKEN environment variable is not set the program will look at this path for a file containing the token
-        /// </summary>
-        string tokenPath = ".apitoken";
         string apiToken = "";
         public static readonly DiscordSocketClient client = new DiscordSocketClient();
 
         public async Task StartUp()
         {
             string apitokenEnv = Environment.GetEnvironmentVariable("DISCORD_API_TOKEN");
+            
             if (apitokenEnv != null)
             {
                 Console.WriteLine("using discord api token from env");
                 apiToken = apitokenEnv;
             }
-            else if (File.Exists(tokenPath))
-            {
-                apiToken = File.ReadAllText(tokenPath);
-                Console.WriteLine($"discord api token loaded from disk.");
-            }
             else
             {
-                Console.Write("api token could not be loaded from disk. Please enter api token: ");
-                apiToken = Console.ReadLine();
+                Console.WriteLine("DISCORD_API_TOKEN environment variable not set, exiting");
+                return;
             }
 
             try
