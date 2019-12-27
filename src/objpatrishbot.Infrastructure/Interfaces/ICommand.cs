@@ -4,6 +4,6 @@ namespace objpatrishbot.Commands
 {
     public interface ICommand
     {
-        Task<string> GetResponse();
+        string GetResponse();
     }
 }
