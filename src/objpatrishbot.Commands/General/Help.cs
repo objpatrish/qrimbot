@@ -10,7 +10,7 @@ namespace objpatrishbot.Commands
     {
         public override string GetResponse()
         {
-            return "This is the help menu, probably need helper methods to create the whole thing";
+            return "Probably need helper methods to create the whole thing piecewise so it can be formatted";
         }
     }
 }

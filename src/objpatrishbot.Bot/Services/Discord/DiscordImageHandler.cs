@@ -14,6 +14,7 @@ namespace objpatrishbot.Bot.Services.Discord
     {
         public async Task SendImage(string user, string channel)
         {
+            // IMO the address logic should be handled by the messagehandler, and this just sends the file
             var qrimPics = Directory.GetFiles("").Where(file => !file.Contains(".mp3")).ToArray();
             var guild = DiscordClient.client.Guilds.Single(g => g.Name == "Obj. Patrish");
             var discordChannel = guild.TextChannels.Single(ch => ch.Name == channel);
