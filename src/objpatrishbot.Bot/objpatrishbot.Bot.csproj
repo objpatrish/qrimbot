@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\objpatrishbot.Infrastructure\objpatrishbot.Infrastructure.csproj" />
+    <ProjectReference Include="..\objpatrishbot.Commands\objpatrishbot.Commands.csproj" />
   </ItemGroup>
 
 

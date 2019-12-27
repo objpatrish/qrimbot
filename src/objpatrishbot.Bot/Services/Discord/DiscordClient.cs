@@ -24,7 +24,6 @@ namespace objpatrishbot.Bot.Services.Discord
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Hi the app is working.");
             if (File.Exists(apiTokenPath))
             {
                 apiToken = File.ReadAllText(apiTokenPath);
@@ -59,7 +58,7 @@ namespace objpatrishbot.Bot.Services.Discord
 
         private Task Log(LogMessage msg)
         {
-            Console.WriteLine(msg.ToString());
+            _logger.LogInformation("Discord Client logged: " + msg.Message);
             return Task.CompletedTask;
         }
     }

@@ -1,10 +1,8 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using objpatrishbot.Bot.Services.Discord;
 
 namespace objpatrishbot.Bot
 {
@@ -17,6 +15,10 @@ namespace objpatrishbot.Bot
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((context, config) =>
+            {
+                config.AddJsonFile("appsettings.development.json", optional: false, reloadOnChange: true);
+            })
             .ConfigureLogging(logging =>
             {
                 // Azure can be hooked up to logging here if ever desired

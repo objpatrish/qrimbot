@@ -20,6 +20,8 @@ namespace objpatrishbot.Bot.Services.Discord
         }
         public async Task MessageReceived(SocketMessage message)
         {
+            // Filter out SocketSystemMessages which will not need to be checked, for performance
+            // Here we will check if the message fires off a bot event or a bot command/action
             if (message.Content.ToUpper().Contains("QRIM"))
             {
                 await _imageHandler.SendImage("qrim", message.Channel.Name, message.Content.ToUpper().Contains("SAD"));
