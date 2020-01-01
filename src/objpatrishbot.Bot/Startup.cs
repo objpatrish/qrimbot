@@ -1,8 +1,7 @@
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using objpatrishbot.Bot.Services.Discord;
-using objpatrishbot.Commands;
-using objpatrishbot.Infrastructure;
+using objpatrishbot.Infrastructure.Discord;
 using objpatrishbot.Infrastructure.Interfaces;
 
 namespace objpatrishbot.Bot
@@ -15,10 +14,11 @@ namespace objpatrishbot.Bot
             services.AddHostedService<DiscordClient>();
             // TelegramClient or otherwise can be added as a hosted service here
 
+            // Discord
             services.AddSingleton<IChatClient, DiscordClient>();
+            services.AddSingleton<IDiscordCommandHandler, DiscordCommandHandler>();
             services.AddScoped<IImageHandler, DiscordImageHandler>();
             services.AddScoped<IMessageHandler<SocketMessage>, DiscordMessageHandler<SocketMessage>>();
-            services.AddSingleton<ICommandHandler<DiscordCommand>, DiscordCommandHandler>();
         }
     }
 }

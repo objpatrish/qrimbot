@@ -8,14 +8,14 @@ namespace objpatrishbot.Commands.Attributes
     [System.AttributeUsage(System.AttributeTargets.Class,
                         AllowMultiple = false)
     ]
-    public class CommandAttribute : Attribute
+    public class DiscordCommandAttribute : Attribute
     {
         public string Name { get; private set; } //e.g help
-        public List<string> TriggerStrings { get; private set; } //e.g. -h --help
-        public CommandAttribute(string name, params string[] triggerStrings)
+        public string TriggerString { get; private set; } //e.g. h, ls, pwd, etc.
+        public DiscordCommandAttribute(string name, string triggerString)
         {
             this.Name = name;
-            this.TriggerStrings = triggerStrings.ToList();
+            this.TriggerString = triggerString;
         }
     }
 }

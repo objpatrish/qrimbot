@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace objpatrishbot.Bot
 {
+
     class Program
     {
         static async Task Main(string[] args)

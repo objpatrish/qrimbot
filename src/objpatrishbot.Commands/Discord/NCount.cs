@@ -6,8 +6,8 @@ using objpatrishbot.Infrastructure.Discord;
 
 namespace objpatrishbot.Commands
 {
-    [DiscordCommand("Mute", "mute")]
-    public class Mute : IDiscordCommand
+    [DiscordCommand("Ncount", "ncount")]
+    public class NCount : IDiscordCommand
     {
         public Task ExecutionAction(SocketMessage message)
         {
@@ -16,7 +16,7 @@ namespace objpatrishbot.Commands
 
         public string GetReply(SocketMessage message)
         {
-            return $"Muting user: ...";
+            return "access database and return top 5 n-word users";
         }
     }
 }

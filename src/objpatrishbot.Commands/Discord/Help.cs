@@ -1,22 +1,24 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using Discord.WebSocket;
+using objpatrishbot.Commands;
 using objpatrishbot.Commands.Attributes;
 using objpatrishbot.Infrastructure.Discord;
 
-namespace objpatrishbot.Commands
+namespace objpatrishbot.Discord
 {
-    [DiscordCommand("Mute", "mute")]
-    public class Mute : IDiscordCommand
+    [DiscordCommand("Help", "help")]
+    public class Help : IDiscordCommand
     {
         public Task ExecutionAction(SocketMessage message)
         {
-            throw new System.NotImplementedException();
+            System.Console.WriteLine("Testing execute action");
+            return Task.CompletedTask;
         }
 
         public string GetReply(SocketMessage message)
         {
-            return $"Muting user: ...";
+            return "this will be a help command...";
         }
     }
 }

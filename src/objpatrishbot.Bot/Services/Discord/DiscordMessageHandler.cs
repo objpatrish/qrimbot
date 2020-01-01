@@ -3,20 +3,20 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Logging;
 using objpatrishbot.Commands;
-using objpatrishbot.Infrastructure;
+using objpatrishbot.Infrastructure.Discord;
 using objpatrishbot.Infrastructure.Interfaces;
 
 namespace objpatrishbot.Bot.Services.Discord
 {
     class DiscordMessageHandler<TMessage> : IMessageHandler<SocketMessage>
     {
-        private ILogger<DiscordMessageHandler<TMessage>> _logger;
+        private ILogger<DiscordMessageHandler<SocketMessage>> _logger;
         private IImageHandler _imageHandler;
-        private ICommandHandler<DiscordCommand> _commandHandler;
+        private IDiscordCommandHandler _commandHandler;
 
         public DiscordMessageHandler(
-            ILogger<DiscordMessageHandler<TMessage>> logger, IImageHandler imagehandler,
-            ICommandHandler<DiscordCommand> commandHandler)
+            ILogger<DiscordMessageHandler<SocketMessage>> logger, IImageHandler imagehandler,
+            IDiscordCommandHandler commandHandler)
         {
             _logger = logger;
             _imageHandler = imagehandler;
@@ -30,20 +30,20 @@ namespace objpatrishbot.Bot.Services.Discord
 
             int prefixIndex = 0;
             if (!message.HasStringPrefix("qbot", ref prefixIndex))
+                return;
+
+            if (await _commandHandler.HandleMessageAsync(message, prefixIndex))
             {
-                var reply = await _commandHandler.CheckMessageForCommands();
-                // Pass to SendMessage, both of these methods need params but I need to find out which
+                _logger.LogInformation("Command triggered successfully.");
+                return;
             }
             else
             {
+                _logger.LogInformation("Message triggered no commands.");
+                return;
                 // pass to some other service/handler which checks for regex etc.
             }
 
-        }
-
-        public Task SendMessage()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
