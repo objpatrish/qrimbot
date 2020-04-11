@@ -7,4 +7,4 @@ COPY ./src ./
 RUN dotnet restore
 
 
-ENTRYPOINT ["dotnet", "run"]
+ENTRYPOINT ["dotnet"]

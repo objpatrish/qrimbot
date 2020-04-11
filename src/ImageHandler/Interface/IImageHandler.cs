@@ -13,7 +13,6 @@ namespace objpatrishbot.ImageHandler.Interface
         /// </summary>
         /// <param name="user">User's name</param>
         /// <returns>An image of type TAttachment</returns>
-        Task SendImage(string user, string channel);
-
+        Task SendImage(string mediaPath, string user, string channel);
     }
 }

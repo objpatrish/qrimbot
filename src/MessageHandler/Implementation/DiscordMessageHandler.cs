@@ -14,7 +14,7 @@ namespace objpatrishbot.MessageHandler.Implementation
             if (message.Content.ToUpper().Contains("QRIM"))
             {
                 var imageProvider = ImageHandlerFactory.Create("");
-                await imageProvider.SendImage("qrim", message.Channel.Name, message.Content.ToUpper().Contains("SAD"));
+                await imageProvider.SendImage("/media", "qrim", message.Channel.Name, message.Content.ToUpper().Contains("SAD"));
             }
         }
     }
