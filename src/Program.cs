@@ -104,7 +104,7 @@ namespace objpatrishbot
 
         public static void Log(string message)
         {
-            Console.WriteLine($"{DateTime.UtcNow}: {message}");
+            Console.WriteLine($"{DateTime.UtcNow.ToString("o")}: {message}");
         }
     }
 }
