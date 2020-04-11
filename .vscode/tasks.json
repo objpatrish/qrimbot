@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "local-build",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -10,6 +10,70 @@
                 "${workspaceFolder}/src/objpatrishbot.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build-debug",
+            "dockerBuild": {
+                "tag": "objpatrishbot:dev",
+                "dockerfile": "${workspaceFolder}/Dockerfile.dev",
+                "context": "${workspaceFolder}",
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/objpatrishbot.csproj"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build-release",
+            "dockerBuild": {
+                "tag": "objpatrishbot:latest",
+                "dockerfile": "${workspaceFolder}/Dockerfile",
+                "context": "${workspaceFolder}",
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/objpatrishbot.csproj"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run-debug",
+            "dependsOn": [
+                "docker-build-debug"
+            ],
+            "dockerRun": {
+                "image": "objpatrishbot:dev",
+                "volumes": [
+                    {
+                        "localPath": "${workspaceFolder}/src",
+                        "containerPath": "/app",
+                        "permissions": "rw"
+                    }
+                ]
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/objpatrishbot.csproj",
+                "enableDebugging": true
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run-release",
+            "dependsOn": [
+                "docker-build-release"
+            ],
+            "dockerRun": {
+                "image": "objpatrishbot:latest"
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/objpatrishbot.csproj"
+            }
         }
     ]
 }

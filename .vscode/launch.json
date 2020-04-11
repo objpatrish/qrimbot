@@ -4,19 +4,35 @@
    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
    "version": "0.2.0",
    "configurations": [
-        {
-            "name": ".NET Core Launch (console)",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/bin/Debug/netcoreapp3.1/objpatrishbot.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/src",
-            // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
-            "console": "internalConsole",
-            "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart"
+    {
+        "name": "local",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "local-build",
+        "program": "${workspaceFolder}/src/bin/Debug/netcoreapp3.1/objpatrishbot.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/src",
+        "console": "internalConsole",
+        "stopAtEntry": false,
+        "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+        "name": "docker-debug",
+        "type": "docker",
+        "request": "launch",
+        "preLaunchTask": "docker-run-debug",
+        "netCore": {
+            "appProject": "${workspaceFolder}/src/objpatrishbot.csproj"
         }
-    ,]
+    }
+    {
+        "name": "docker-release",
+        "type": "docker",
+        "request": "launch",
+        "preLaunchTask": "docker-run-release",
+        "netCore": {
+            "appProject": "${workspaceFolder}/src/objpatrishbot.csproj"
+        }
+    }
+]
 }
