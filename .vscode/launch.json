@@ -24,14 +24,15 @@
         "netCore": {
             "appProject": "${workspaceFolder}/src/objpatrishbot.csproj"
         }
-    }
+    },
     {
         "name": "docker-release",
         "type": "docker",
         "request": "launch",
         "preLaunchTask": "docker-run-release",
         "netCore": {
-            "appProject": "${workspaceFolder}/src/objpatrishbot.csproj"
+            "appProject": "${workspaceFolder}/src/objpatrishbot.csproj",
+            "enableDebugging": false
         }
     }
 ]

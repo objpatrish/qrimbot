@@ -48,14 +48,7 @@
                 "docker-build-debug"
             ],
             "dockerRun": {
-                "image": "objpatrishbot:dev",
-                "volumes": [
-                    {
-                        "localPath": "${workspaceFolder}/src",
-                        "containerPath": "/app",
-                        "permissions": "rw"
-                    }
-                ]
+                "command": "run",
             },
             "netCore": {
                 "appProject": "${workspaceFolder}/src/objpatrishbot.csproj",
@@ -69,10 +62,11 @@
                 "docker-build-release"
             ],
             "dockerRun": {
-                "image": "objpatrishbot:latest"
+                "containerName": "objpatrishbot-release"
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/src/objpatrishbot.csproj"
+                "appProject": "${workspaceFolder}/src/objpatrishbot.csproj",
+                "enableDebugging": false
             }
         }
     ]
