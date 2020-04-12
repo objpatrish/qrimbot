@@ -13,6 +13,7 @@ namespace objpatrishbot.ChatClient.Discord
 
         public DiscordClient(ChatClientConfig config) : base(config)
         {
+            clientType = "discord";
             string apitokenEnv = Environment.GetEnvironmentVariable("DISCORD_API_TOKEN");
 
             if (apitokenEnv != null)
@@ -30,17 +31,15 @@ namespace objpatrishbot.ChatClient.Discord
         {
             try
             {
-                Program.Log($"discord common cfg media dir: {config.common["media_dir"]},  api key: {apiToken}....have nice day");
-                await Task.Delay(1000);
-                // var messageHandler = MessageHandlerFactory<SocketMessage>.Create();
+                var messageHandler = MessageHandlerFactory<SocketMessage>.Create();
 
-                // client.Log += Log;
-                // client.MessageReceived += messageHandler.MessageReceived;
-
-                // await client.LoginAsync(TokenType.Bot, apiToken);
-                // await client.StartAsync();
-                // // Block this task until the program is closed.
-                // await Task.Delay(-1);
+                client.Log += Log;
+                client.MessageReceived += messageHandler.MessageReceived;
+                
+                await client.LoginAsync(TokenType.Bot, apiToken);
+                await client.StartAsync();
+                // Block this task until the program is closed.
+                await Task.Delay(-1);
             }
             catch (System.Exception e)
             {
