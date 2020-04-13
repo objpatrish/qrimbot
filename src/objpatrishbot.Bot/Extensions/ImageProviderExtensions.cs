@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using objpatrishbot.ChatClient.Implementation;
-using objpatrishbot.ImageHandler.Interface;
+using objpatrishbot.Bot.Services.Discord;
+using objpatrishbot.Infrastructure.Interfaces;
 
-namespace objpatrishbot.ImageHandler.Implementations
+namespace objpatrishbot.Bot.Extensions
 {
     static class ImageProviderExtensions
     {

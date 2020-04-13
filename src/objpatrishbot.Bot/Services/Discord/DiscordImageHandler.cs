@@ -6,15 +6,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Discord;
-using objpatrishbot.ChatClient.Implementation;
-using objpatrishbot.ImageHandler.Interface;
+using objpatrishbot.Infrastructure.Interfaces;
 
-namespace objpatrishbot.ImageHandler.Implementations
+namespace objpatrishbot.Bot.Services.Discord
 {
     class DiscordImageHandler: IImageHandler
     {
         public async Task SendImage(string user, string channel)
         {
+            // IMO the address logic should be handled by the messagehandler, and this just sends the file
             var qrimPics = Directory.GetFiles("").Where(file => !file.Contains(".mp3")).ToArray();
             var guild = DiscordClient.client.Guilds.Single(g => g.Name == "Obj. Patrish");
             var discordChannel = guild.TextChannels.Single(ch => ch.Name == channel);

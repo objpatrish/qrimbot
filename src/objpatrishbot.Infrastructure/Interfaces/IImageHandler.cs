@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace objpatrishbot.ImageHandler.Interface
+namespace objpatrishbot.Infrastructure.Interfaces
 {
     // TAttachment is the return type of the attachment.
-    interface IImageHandler
+    public interface IImageHandler
     {
         /// <summary>
         /// Gets a random image of a specified user.
